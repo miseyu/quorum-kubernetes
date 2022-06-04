@@ -1,4 +1,3 @@
-
 {{- if and .Values.node.goquorum.metrics.enabled .Values.node.goquorum.metrics.serviceMonitorEnabled }}
 
 ---

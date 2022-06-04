@@ -4,33 +4,11 @@ quorumFlags:
   privacy: false
   removeKeysOnDelete: false
 
-cluster:
-  provider: local  # choose from: local | aws | azure
-  cloudNativeServices: false # set to true to use Cloud Native Services (SecretsManager and IAM for AWS; KeyVault & Managed Identities for Azure)
-  reclaimPolicy: Delete # set to either Retain or Delete
-
-aws:
-  # the aws cli commands uses the name 'quorum-node-secrets-sa' so only change this if you altered the name
-  serviceAccountName: quorum-node-secrets-sa
-  # the region you are deploying to
-  region: ap-southeast-2
-
-azure:
-  # the script/bootstrap.sh uses the name 'quorum-pod-identity' so only change this if you altered the name
-  identityName: quorum-pod-identity
-  # the clientId of the user assigned managed identity created in the template
-  identityClientId: azure-clientId
-  keyvaultName: azure-keyvault
-  # the tenant ID of the key vault
-  tenantId: azure-tenantId
-  # the subscription ID to use - this needs to be set explictly when using multi tenancy
-  subscriptionId: azure-subscriptionId
-
 storage:
   sizeLimit: "20Gi"
   pvcSizeLimit: "20Gi"
   # NOTE: when you set this to Retain, the volume WILL persist after the chart is delete and you need to manually delete it
-  reclaimPolicy: "Delete" # choose from: Delete | Retain 
+  reclaimPolicy: "Delete" # choose from: Delete | Retain
 
 node:
   goquorum:
@@ -65,7 +43,7 @@ node:
       port: 8545
       corsDomain: "*"
       vHosts: "*"
-      api: "admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul"  
+      api: "admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul"
       authenticationEnabled: false
     ws:
       enabled: true
@@ -112,7 +90,7 @@ image:
     tag: 22.4.0
   tessera:
     repository: quorumengineering/tessera
-    tag: 22.1.1
+    tag: 22.1
   hooks:
     repository: consensys/quorum-k8s-hooks
     tag: qgt-0.1.7
